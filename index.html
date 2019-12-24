@@ -2,9 +2,54 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>HandleBars Practice</title>
     </head>
+    <script src="./handlebars-v4.5.3.js"></script>
     <body>
+
+        <div id="andyData"></div>
+        <div id="quoteOutput"></div>
+
+        <!-- Most basic command to use handlebars -->
+        <!-- <script type="text/javascript">
+            var myInfo = "<h1>My name is {{name}} and I live in {{place}}. I am {{age}} years old.</h1>";
+
+            var template = Handlebars.compile(myInfo);
+            var data = template({name: "Andy", place: "Queens", age: 29});
+
+            document.getElementById('andyData').innerHTML += data
+        </script> -->
+
+        <!-- second example to use handlebars -->
+        <!-- this is to seperate our templates to make our page load and compile faster -->
+        <script id="quote-template" type="text/x-handlebars-template">
+            <h3>Famous {{qName}} Quotes</h3>
+            <ol>
+                {{#each quotes}}
+                <li>
+                    {{quote}}
+                </li>
+                {{/each}}
+            </ol>
+            {{!-- {{This makes it so you do not have to add any html tags, makes it slighty cleaner}} --}}
+            {{{japanBio}}}
+        </script>
+        <script type="text/javascript">
+            var quoteInfo = document.getElementById('quote-template').innerHTML;
+            var template2 = Handlebars.compile(quoteInfo);
+            var quoteData = template2({
+                qName: "Japanese",
+                quotes: [
+                    {quote: "To live by the sword"},
+                    {quote: "Honor, Loyalty, Serve, Compassion"},
+                    {quote: "We are the Rising Sun!"}
+                ],
+                japanBio: "<i>Founded in 1293</i>"
+            })
+
+            document.getElementById('quoteOutput').innerHTML += quoteData;
+        </script>
+
 
     </body>
 </html>
